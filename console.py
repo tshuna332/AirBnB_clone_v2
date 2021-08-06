@@ -11,6 +11,7 @@ from models.city import City
 from models.amenity import Amenity
 from models.review import Review
 
+import shlex
 
 class HBNBCommand(cmd.Cmd):
     """ Contains the functionality for the HBNB console"""
@@ -113,19 +114,45 @@ class HBNBCommand(cmd.Cmd):
         """ Overrides the emptyline method of CMD """
         pass
 
-    def do_create(self, args):
-        """ Create an object of any class"""
-        if not args:
+    
+    def proceser(self, arg, instance):
+        new_dict = {}
+        for str_iteracion in arg:
+            if "=" in str_iteracion:
+                splitted = str_iteracion.split('=', 1)
+                key_name = splitted[0]
+                value = splitted[1]
+
+                if value[0] == value[-1] == '"':
+                    value = value.replace('_', ' ')
+                else:
+                    try:
+                        value = int(value)
+                    except:
+                        try:
+                            value = float(value)
+                        except:
+                            continue
+                setattr(instance, key_name, value)
+        return
+
+    def do_create(self, arg):
+        """Create an object of any class"""
+        arg_list = arg.split()
+
+        if not arg:
             print("** class name missing **")
             return
-        elif args not in HBNBCommand.classes:
+        if arg_list[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
             return
-        new_instance = HBNBCommand.classes[args]()
-        storage.save()
-        print(new_instance.id)
-        storage.save()
 
+        instancia = HBNBCommand.classes[arg_list[0]]()
+        self.proceser(arg_list[1:], instancia)
+
+        print(instancia.id)
+        instancia.save()
+    
     def help_create(self):
         """ Help information for the create method """
         print("Creates a class of any type")
