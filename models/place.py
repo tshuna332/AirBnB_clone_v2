@@ -18,3 +18,12 @@ class Place(BaseModel):
     latitude = Column(Float, nullable=True)
     longitude = Column(Float, nullable=True)
     amenity_ids = []
+    if (models.storage_used == "db"):
+        reviews = relationship("Review", backref="place")
+    else:
+        def reviews(self):
+            new_dict = []
+            for key, value in storage.all:
+                if (self.id == value.id):
+                  new_dict[key] = value
+            return (new_dict)
