@@ -3,7 +3,7 @@
 import models
 import sqlalchemy
 from models.base_model import BaseModel, Base
-from sqlalchemy import Column, Integer, String, ForeignKey, Float
+from sqlalchemy import Column, Integer, String, ForeignKey, Float, Table
 from sqlalchemy.orm import relationship
 
 if (models.storage_used == "db"):
