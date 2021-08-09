@@ -40,9 +40,7 @@ class DBStorage:
             HBNB_MYSQL_HOST,
             HBNB_MYSQL_DB
         )
-        print("PASO")
-        print(url_conect)
-    
+
         self.__engine = create_engine(url_conect, pool_pre_ping=True)
 
         if HBNB_ENV == "test":
