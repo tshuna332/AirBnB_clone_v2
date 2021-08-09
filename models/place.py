@@ -30,6 +30,7 @@ class Place(BaseModel, Base):
         
         @property
         def reviews(self):
+            """ asd asd """
             new_dict = []
             for key, value in storage.all:
                 if (self.id == value.id):
@@ -38,6 +39,7 @@ class Place(BaseModel, Base):
 
         @property
         def amenities(self):
+            """ asd asd """
             new_dict = []
             for key, value in storage.all:
                 if (self.id == value.id):
