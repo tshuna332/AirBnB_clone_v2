@@ -134,7 +134,6 @@ class HBNBCommand(cmd.Cmd):
                             continue
 
                 setattr(instance, key_name, value)
-                print(instance.to_dict())
         return
 
     def do_create(self, arg):
