@@ -19,7 +19,7 @@ classes = {'BaseModel': BaseModel, 'User': User, 'Place': Place,
 
 
 class DBStorage:
-    
+    """This class manages storage of hbnb models in JSON format"""
     __engine = None
     __session = None
 
