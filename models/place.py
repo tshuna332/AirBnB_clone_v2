@@ -6,6 +6,16 @@ from models.base_model import BaseModel, Base
 from sqlalchemy import Column, Integer, String, ForeignKey, Float
 from sqlalchemy.orm import relationship
 
+place_amenity = Table('place_amenity', Base.metadata,
+                      Column('place_id', String(60),
+                             ForeignKey('places.id', onupdate='CASCADE',
+                                        ondelete='CASCADE'),
+                             primary_key=True),
+                      Column('amenity_id', String(60),
+                             ForeignKey('amenities.id', onupdate='CASCADE',
+                                        ondelete='CASCADE'),
+                             primary_key=True))
+
 class Place(BaseModel, Base):
     """ A place to stay """
     __tablename__ = 'places'
@@ -22,9 +32,18 @@ class Place(BaseModel, Base):
     amenity_ids = []
     if (models.storage_used == "db"):
         reviews = relationship("Review", backref="place")
+        reviews = relationship("Amenity", secondary="place_amenity", backref="place_amenity", viewonly=False)
     else:
         @property
         def reviews(self):
+            new_dict = []
+            for key, value in storage.all:
+                if (self.id == value.id):
+                  new_dict[key] = value
+            return (new_dict)
+
+        @property
+        def amenities(self):
             new_dict = []
             for key, value in storage.all:
                 if (self.id == value.id):
