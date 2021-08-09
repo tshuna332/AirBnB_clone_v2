@@ -226,22 +226,56 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, args):
         """ Shows all objects, or all objects of a class"""
+        lista = {}
         print_list = []
 
         if args:
+            class_pointer = HBNBCommand.classes[args.split(' ')[0]]
+            lista = storage.all(class_pointer)
+        else:
+            lista = storage.all()
+
+        for k in lista:
+            print_list.append(str(lista[k]))
+
+        print(print_list)
+
+        
+        """
+        lista = {}
+        print_list = []
+
+        if args:
+            class_pointer = HBNBCommand.classes[args.split(' ')[0]]
+            lista = storage.all(class_pointer)
+        else:
+            lista = storage.all()
+
+        for k in lista:
+            print_list.append(lista[k].to_dict())
+
+        print(print_list)
+
+        ===================================================
+        print_list = []
+
+        if args:
+            obj = storage.all(args)
             args = args.split(' ')[0]  # remove possible trailing args
             if args not in HBNBCommand.classes:
                 print("** class doesn't exist **")
                 return
-            for k, v in storage._FileStorage__objects.items():
+            for k in obj:
                 if k.split('.')[0] == args:
-                    print_list.append(str(v))
+                    print_list.append(obj[k])
         else:
-            for k, v in storage._FileStorage__objects.items():
-                print_list.append(str(v))
+            obj = storage.all(args)
+            for k in obj:
+                print_list.append(obj[k])
 
         print(print_list)
-
+        """
+        
     def help_all(self):
         """ Help information for the all command """
         print("Shows all objects, or all of a class")

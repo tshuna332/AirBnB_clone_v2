@@ -31,6 +31,8 @@ class DBStorage:
         HBNB_MYSQL_DB = getenv('HBNB_MYSQL_DB')
         HBNB_ENV = getenv('HBNB_ENV')
 
+        HBNB_MYSQL_USER = "prueba"
+        HBNB_MYSQL_PWD = "1_2_3_4_5_6_7_8_9_aSdFgHj_K_L"
 
         url_conect = "{}+{}://{}:{}@{}:3306/{}".format(
             "mysql",
@@ -51,13 +53,14 @@ class DBStorage:
         new_dict = {}
         if cls is None:
             for clas in self.__session.query(BaseModel, User, Place, State, City, Amenity, Review).all():
-                clave = "{}.{}".format(type(cls).__name__, clas.id)
+                clave = "{}.{}".format(type(clas).__name__, clas.id)
                 new_dict[clave] = clas
         else:
             for clas in self.__session.query(cls).all():
-                clave = "{}.{}".format(type(cls).__name__, clas.id)
+                clave = "{}.{}".format(type(clas).__name__, clas.id)
                 new_dict[clave] = clas
-            return new_dict
+
+        return new_dict
 
     def new(self, obj):
         """ NEASDFas """
