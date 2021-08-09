@@ -56,6 +56,7 @@ class FileStorage:
             pass
 
     def delete(self, obj=None):
+        """Loads storage dictionary from file"""
         if obj is not None:
             clave = obj.__class__.__name__ + '.' + obj.id
             if clave in self.__objects:
