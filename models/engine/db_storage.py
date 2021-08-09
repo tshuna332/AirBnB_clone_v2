@@ -31,6 +31,9 @@ class DBStorage:
         HBNB_MYSQL_DB = getenv('HBNB_MYSQL_DB')
         HBNB_ENV = getenv('HBNB_ENV')
 
+        HBNB_MYSQL_USER = "prueba"
+        HBNB_MYSQL_PWD = "1_2_3_4_5_6_7_8_9_aSdFgHj_K_L"
+
         url_conect = "{}+{}://{}:{}@{}:3306/{}".format(
             "mysql",
             "mysqldb",
