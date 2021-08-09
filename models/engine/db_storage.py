@@ -25,6 +25,7 @@ class DBStorage:
 
     def __init__(self):
         """  """
+        print("ARMANDO")
         HBNB_MYSQL_USER = getenv('HBNB_MYSQL_USER')
         HBNB_MYSQL_PWD = getenv('HBNB_MYSQL_PWD')
         HBNB_MYSQL_HOST = getenv('HBNB_MYSQL_HOST')
@@ -53,7 +54,7 @@ class DBStorage:
         for row in result:
             print("username:", row['username'])
 
-            
+
 
     def new(self, obj):
         self.__session.add(obj)
