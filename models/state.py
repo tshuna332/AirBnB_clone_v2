@@ -3,21 +3,20 @@
 import models
 from models.base_model import BaseModel, Base
 from models.city import City
-"""
-import sqlalchemy
 from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.orm import relationship
-"""
 
 
-class State(BaseModel):
+class State(BaseModel, Base):
     """ State class """
-    name = ""
-    cities = ""
-        
-    """
-        __tablename__ = 'states'
-        name = Column(String(128), nullable=False)
+    __tablename__ = 'states'
+    name = Column(String(128), nullable=False)    
+    if (models.storage_used == "db"):
         cities = relationship("City", backref="state")
-    """
-        
+    else:
+        def cities(self):
+            new_dict = []
+            for key, value in storage.all:
+                if (self.id == value.id):
+                  new_dict[key] = value
+            return (new_dict)
