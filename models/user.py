@@ -15,4 +15,4 @@ class User(BaseModel, Base):
     last_name = Column(String(128), nullable=True)
     if (models.storage_used == "db"):
         places = relationship("Place", backref="user")
-
+        reviews = relationship("Review", backref="user")

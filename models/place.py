@@ -20,8 +20,13 @@ class Place(BaseModel, Base):
     latitude = Column(Float, nullable=True)
     longitude = Column(Float, nullable=True)
     amenity_ids = []
-    """
     if (models.storage_used == "db"):
-        users = relationship("User", back_populates="Place")
-        cities = relationship("City", back_populates="Place")
-    """
+        reviews = relationship("Review", backref="place")
+    else:
+        @property
+        def reviews(self):
+            new_dict = []
+            for key, value in storage.all:
+                if (self.id == value.id):
+                  new_dict[key] = value
+            return (new_dict)
