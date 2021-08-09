@@ -11,7 +11,6 @@ from models.city import City
 from models.amenity import Amenity
 from models.review import Review
 
-import shlex
 
 class HBNBCommand(cmd.Cmd):
     """ Contains the functionality for the HBNB console"""
@@ -114,7 +113,6 @@ class HBNBCommand(cmd.Cmd):
         """ Overrides the emptyline method of CMD """
         pass
 
-    
     def proceser(self, arg, instance):
         new_dict = {}
         for str_iteracion in arg:
@@ -152,7 +150,7 @@ class HBNBCommand(cmd.Cmd):
 
         print(instancia.id)
         instancia.save()
-    
+
     def help_create(self):
         """ Help information for the create method """
         print("Creates a class of any type")
@@ -226,56 +224,22 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, args):
         """ Shows all objects, or all objects of a class"""
-        lista = {}
         print_list = []
 
         if args:
-            class_pointer = HBNBCommand.classes[args.split(' ')[0]]
-            lista = storage.all(class_pointer)
-        else:
-            lista = storage.all()
-
-        for k in lista:
-            print_list.append(str(lista[k]))
-
-        print(print_list)
-
-        
-        """
-        lista = {}
-        print_list = []
-
-        if args:
-            class_pointer = HBNBCommand.classes[args.split(' ')[0]]
-            lista = storage.all(class_pointer)
-        else:
-            lista = storage.all()
-
-        for k in lista:
-            print_list.append(lista[k].to_dict())
-
-        print(print_list)
-
-        ===================================================
-        print_list = []
-
-        if args:
-            obj = storage.all(args)
             args = args.split(' ')[0]  # remove possible trailing args
             if args not in HBNBCommand.classes:
                 print("** class doesn't exist **")
                 return
-            for k in obj:
+            for k, v in storage._FileStorage__objects.items():
                 if k.split('.')[0] == args:
-                    print_list.append(obj[k])
+                    print_list.append(str(v))
         else:
-            obj = storage.all(args)
-            for k in obj:
-                print_list.append(obj[k])
+            for k, v in storage._FileStorage__objects.items():
+                print_list.append(str(v))
 
         print(print_list)
-        """
-        
+
     def help_all(self):
         """ Help information for the all command """
         print("Shows all objects, or all of a class")
