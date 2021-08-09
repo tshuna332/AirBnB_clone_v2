@@ -123,6 +123,7 @@ class HBNBCommand(cmd.Cmd):
 
                 if value[0] == value[-1] == '"':
                     value = value.replace('_', ' ')
+                    value = value[1:-1]
                 else:
                     try:
                         value = int(value)
@@ -131,6 +132,7 @@ class HBNBCommand(cmd.Cmd):
                             value = float(value)
                         except:
                             continue
+
                 setattr(instance, key_name, value)
         return
 
