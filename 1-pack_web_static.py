@@ -8,7 +8,7 @@ from datetime import datetime
 def do_pack():
     """asd asd as d"""
     try:
-        local('mkdir versions')
+        local('mkdir -p versions')
         date = datetime.now().strftime("%Y%m%d%H%M%S")
         name = "versions/web_static_" + date + ".tgz"
         tar = local("tar -cvzf " + name + " web_static")
