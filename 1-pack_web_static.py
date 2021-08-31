@@ -10,8 +10,8 @@ def do_pack():
     try:
         local('mkdir versions')
         date = datetime.now().strftime("%Y%m%d%H%M%S")
-        name = "web_static_" + date + ".tgz"
-        tar = local("tar -cvzf versions/" + name + " web_static")
-        return ("versions/" + name)
+        name = "versions/web_static_" + date + ".tgz"
+        tar = local("tar -cvzf " + name + " web_static")
+        return (name)
     except:
         return (None)
