@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route('/', strict_slashes=False)
 def hello():
-    """DFSSDFG DDFSDF SDF SDFDS""""
+    """DFSSDFG DDFSDF SDF SDFDS"""
     return 'Hello HBNB!'
 
 
