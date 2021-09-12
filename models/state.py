@@ -10,7 +10,7 @@ from sqlalchemy.orm import relationship
 class State(BaseModel, Base):
     """ State class """
     __tablename__ = 'states'
-    name = Column(String(128), nullable=False)    
+    name = Column(String(128), nullable=False)
     if (models.storage_used == "db"):
         cities = relationship("City", backref="state")
     else:
@@ -19,5 +19,5 @@ class State(BaseModel, Base):
             new_dict = []
             for key, value in storage.all:
                 if (self.id == value.id):
-                  new_dict[key] = value
+                    new_dict[key] = value
             return (new_dict)
