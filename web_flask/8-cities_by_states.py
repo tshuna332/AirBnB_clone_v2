@@ -8,11 +8,11 @@ app = Flask(__name__)
 app.url_map.strict_slashes = False
 
 
-@app.route('/cities_by_states')
-def cities_by_states():
-    """ DFGDFG DFG FDG FDG DFG DDFG """
-    states = storage.all(State)
-    return render_template('8-cities_by_states.html', states=states)
+@app.route('/states_list', strict_slashes=False)
+def states():
+    """Returns a html listing the states"""
+    return render_template('7-states_list.html',
+                           states=storage.all('State').values())
 
 
 @app.teardown_appcontext
