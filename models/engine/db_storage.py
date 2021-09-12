@@ -49,7 +49,11 @@ class DBStorage:
         """ asdfdsfsdfasdz """
         new_dict = {}
         if cls is None:
-            for clas in self.__session.query(BaseModel, User, Place, State, City, Amenity, Review).all():
+            for clas in self.__session.query(BaseModel,
+                                             User, Place,
+                                             State, City,
+                                             Amenity,
+                                             Review).all():
                 clave = "{}.{}".format(type(clas).__name__, clas.id)
                 new_dict[clave] = clas
         else:
@@ -62,7 +66,7 @@ class DBStorage:
     def new(self, obj):
         """ NEASDFas """
         self.__session.add(obj)
-    
+
     def save(self):
         """ NEASDFas """
         self.__session.commit()
@@ -82,4 +86,3 @@ class DBStorage:
     def close(self):
         """closes the current SQLAlchemy session"""
         self.__session.close()
-
