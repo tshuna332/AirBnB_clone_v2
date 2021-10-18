@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""asd a sdasd as d"""
+"""DFGHDFSGDFRSDFSGDFSG"""
 
 from fabric.operations import local, run, put
 from datetime import datetime
@@ -7,12 +7,13 @@ import os
 from fabric.api import env
 import re
 
+
 env.hosts = ['35.196.90.236', '34.73.156.98']
-env.user = "ubuntu"
+
 
 
 def do_pack():
-    """ADSFF ADSFASDFADSF"""
+    """SDGSDFGSDFSDFSDFGFSDGHSD ADSF DSF"""
     local("mkdir -p versions")
     result = local("tar -cvzf versions/web_static_{}.tgz web_static"
                    .format(datetime.strftime(datetime.now(), "%Y%m%d%H%M%S")),
@@ -23,7 +24,7 @@ def do_pack():
 
 
 def do_deploy(archive_path):
-    """SDFSDF DSFDSF DSFDS FDSSD F"""
+    """FGHFG SDGDS FGDSF DSFDS F"""
     if not os.path.exists(archive_path):
         return False
     rex = r'^versions/(\S+).tgz'
