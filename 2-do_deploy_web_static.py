@@ -10,6 +10,7 @@ import re
 env.hosts = ['35.196.90.236', '34.73.156.98']
 env.user = "ubuntu"
 
+
 def do_pack():
     """ADSFF ADSFASDFADSF"""
     local("mkdir -p versions")
