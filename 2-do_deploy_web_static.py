@@ -1,8 +1,11 @@
 #!/usr/bin/python3
 """asd a sdasd as d"""
 
-from fabric.api import *
+from fabric.operations import local, run, put
 from datetime import datetime
+import os
+from fabric.api import env
+import re
 
 env.hosts = ['35.196.90.236', '34.73.156.98']
 env.user = "ubuntu"
